@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好友名單 — Muse &amp; Sonia Wedding Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 24px 16px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #f8b500, #e85d75);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 24px; }
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .stats { font-size: 15px; color: #aaa; }
+        .stats strong { color: #f8b500; font-size: 20px; }
+        .btn {
+            padding: 9px 18px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-download { background: linear-gradient(135deg, #00b894, #00cec9); color: #fff; }
+        .btn-download:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,206,201,0.4); }
+        .btn-refresh { background: rgba(255,255,255,0.1); color: #ccc; border: 1px solid rgba(255,255,255,0.15); }
+        .btn-refresh:hover { background: rgba(255,255,255,0.15); }
+        .btn-back { background: rgba(255,255,255,0.05); color: #888; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-back:hover { color: #ccc; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        thead { background: rgba(255,255,255,0.08); }
+        th {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #999;
+            font-weight: 600;
+        }
+        td { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .uid { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #7ec8e3; word-break: break-all; }
+        .name { font-weight: 500; color: #f0f0f0; }
+        .time { color: #999; font-size: 13px; }
+        .empty, .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        .empty .icon, .loading .icon { font-size: 40px; margin-bottom: 12px; }
+        @media (max-width: 600px) {
+            th, td { padding: 10px 8px; }
+            .uid { font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>💒 好友名單</h1>
+    <p class="subtitle">LINE 官方帳號好友資訊管理</p>
+
+    <div class="toolbar">
+        <div class="stats">共 <strong id="friendCount">—</strong> 位好友</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <a href="admin.html" class="btn btn-back">← 推播管理</a>
+            <button class="btn btn-refresh" onclick="loadFriends()">🔄 重新整理</button>
+            <a href="/api/friends/csv" class="btn btn-download">⬇ 下載 CSV</a>
+        </div>
+    </div>
+
+    <div id="tableContainer">
+        <div class="loading"><div class="icon">⏳</div><p>載入中…</p></div>
+    </div>
+</div>
+
+<script>
+    function escapeHtml(str) {
+        const d = document.createElement('div');
+        d.textContent = str;
+        return d.innerHTML;
+    }
+
+    async function loadFriends() {
+        const container = document.getElementById('tableContainer');
+        container.innerHTML = '<div class="loading"><div class="icon">⏳</div><p>載入中…</p></div>';
+
+        try {
+            const res = await fetch('/api/friends');
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Unknown error');
+
+            document.getElementById('friendCount').textContent = data.count;
+
+            if (data.count === 0) {
+                container.innerHTML = `
+                    <div class="empty">
+                        <div class="icon">👥</div>
+                        <p>目前還沒有好友加入</p>
+                        <p style="margin-top:8px;font-size:13px;">好友加入 LINE 官方帳號後，資料會自動出現在這裡</p>
+                    </div>`;
+                return;
+            }
+
+            let html = `<table>
+                <thead><tr><th>#</th><th>顯示名稱</th><th>LINE UID</th><th>加入時間</th></tr></thead>
+                <tbody>`;
+
+            data.friends.forEach((f, i) => {
+                const dt = new Date(f.joined_at).toLocaleString('zh-TW', {
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit',
+                });
+                html += `<tr>
+                    <td>${i + 1}</td>
+                    <td class="name">${escapeHtml(f.display_name || '未知')}</td>
+                    <td class="uid">${escapeHtml(f.line_uid)}</td>
+                    <td class="time">${dt}</td>
+                </tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        } catch (err) {
+            container.innerHTML = `
+                <div class="empty" style="color:#e85d75;">
+                    <div class="icon">⚠️</div>
+                    <p>載入失敗：${escapeHtml(err.message)}</p>
+                </div>`;
+        }
+    }
+
+    loadFriends();
+</script>
+</body>
+</html>

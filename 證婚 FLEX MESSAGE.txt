@@ -1,0 +1,235 @@
+{
+  "type": "bubble",
+  "size": "giga",
+  "hero": {
+    "type": "image",
+    "url": "https://raw.githubusercontent.com/muselintw/Wedding/main/%E5%A4%A7Gemini_Generated_Image_effw9meffw9meffw.jpeg",
+    "size": "full",
+    "aspectRatio": "1:1",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://hackmd.io/_uploads/S1F5p3WFWe.jpg"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "WEDDING INVITATION",
+        "size": "xs",
+        "color": "#95A58D",
+        "weight": "bold"
+      },
+      {
+        "type": "text",
+        "text": "誠摯邀請您見證我們的婚禮",
+        "size": "lg",
+        "weight": "bold",
+        "color": "#3a3a3a",
+        "wrap": true,
+        "margin": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#e0e0e0"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "📌 地點",
+                "size": "sm",
+                "color": "#888888",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "翡麗詩莊園 5F",
+                "size": "sm",
+                "color": "#5D7B9F",
+                "flex": 5,
+                "weight": "bold",
+                "action": {
+                  "type": "uri",
+                  "uri": "https://maps.app.goo.gl/fAZNh2bhtvjimGdV7"
+                }
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "💍 證婚",
+                "size": "sm",
+                "color": "#888888",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "2026.03.28　15:45 入場",
+                "size": "sm",
+                "color": "#3a3a3a",
+                "weight": "bold",
+                "flex": 5
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "🥂 宴客",
+                "size": "sm",
+                "color": "#888888",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "2026.03.28　17:30 入座",
+                "size": "sm",
+                "color": "#3a3a3a",
+                "weight": "bold",
+                "flex": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "md",
+        "color": "#e0e0e0"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Dress Code",
+            "size": "sm",
+            "weight": "bold",
+            "color": "#95A58D"
+          },
+          {
+            "type": "text",
+            "text": "誠摯邀請您著以下色系服飾與我們共享喜悅：",
+            "size": "xs",
+            "color": "#888888",
+            "wrap": true,
+            "margin": "xs"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "height": "48px",
+                "cornerRadius": "6px",
+                "backgroundColor": "#DADEDF",
+                "contents": []
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "height": "48px",
+                "cornerRadius": "6px",
+                "backgroundColor": "#C0CFB2",
+                "contents": []
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "height": "48px",
+                "cornerRadius": "6px",
+                "backgroundColor": "#95A58D",
+                "contents": []
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "height": "48px",
+                "cornerRadius": "6px",
+                "backgroundColor": "#9BAED4",
+                "contents": []
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "flex": 1,
+                "height": "48px",
+                "cornerRadius": "6px",
+                "backgroundColor": "#5D7B9F",
+                "contents": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "backgroundColor": "#FFFFFF",
+    "paddingAll": "20px"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "paddingAll": "16px",
+    "backgroundColor": "#F7F7F7",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "🎊 證婚程序",
+          "uri": "https://www.youtube.com/watch?v=LynpbKYQshk"
+        },
+        "style": "primary",
+        "color": "#95A58D",
+        "height": "sm"
+      },
+      {
+        "type": "button",
+        "action": {
+          "type": "uri",
+          "label": "🅿️ 附近停車場｜中山國中地下停車場",
+          "uri": "https://maps.app.goo.gl/6798CnvXKfPxAoxFA"
+        },
+        "style": "secondary",
+        "height": "sm"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": true,
+      "separatorColor": "#e0e0e0"
+    }
+  }
+}

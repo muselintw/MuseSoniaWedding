@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推播管理 — Muse &amp; Sonia Wedding Bot</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        .card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 36px 32px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #f8b500, #e85d75);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+        .form-group { margin-bottom: 22px; }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #bbb;
+        }
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: #ddd;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        input[type="file"]::file-selector-button {
+            background: rgba(248,181,0,0.2);
+            border: 1px solid rgba(248,181,0,0.4);
+            color: #f8b500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 13px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #f8b500, #e85d75);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+        .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .status {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 20px;
+        }
+        .success { color: #00b894; }
+        .error { color: #e85d75; }
+        .nav-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .nav-link:hover { color: #ccc; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>💌 一鍵推播</h1>
+    <p class="subtitle">Muse &amp; Sonia Wedding — 推播管理介面</p>
+
+    <form id="pushForm">
+        <div class="form-group">
+            <label>① 推播名單 <span style="font-weight:400;color:#666">（CSV，含 LINE UID）</span></label>
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+        </div>
+        <div class="form-group">
+            <label>② Flex Message 模板 <span style="font-weight:400;color:#666">（JSON）</span></label>
+            <input type="file" id="jsonFile" name="jsonFile" accept=".json" required>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-submit">發送推播</button>
+    </form>
+
+    <div id="statusMsg" class="status"></div>
+    <a href="friends.html" class="nav-link">→ 好友名單管理</a>
+</div>
+
+<script>
+    document.getElementById('pushForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const msg = document.getElementById('statusMsg');
+
+        btn.disabled = true;
+        btn.textContent = '傳送中…';
+        msg.textContent = '';
+        msg.className = 'status';
+
+        const formData = new FormData();
+        formData.append('csvFile', document.getElementById('csvFile').files[0]);
+        formData.append('jsonFile', document.getElementById('jsonFile').files[0]);
+
+        try {
+            const res = await fetch('/api/push', { method: 'POST', body: formData });
+            const data = await res.json();
+            if (res.ok) {
+                msg.textContent = '✅ ' + data.message;
+                msg.classList.add('success');
+            } else {
+                msg.textContent = '❌ ' + data.error;
+                msg.classList.add('error');
+            }
+        } catch {
+            msg.textContent = '❌ 網路錯誤，請稍後再試。';
+            msg.classList.add('error');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = '發送推播';
+        }
+    });
+</script>
+</body>
+</html>

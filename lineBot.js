@@ -28,17 +28,22 @@ async function handleEvent(event) {
                 console.error('Failed to get user profile:', err.message);
             }
 
-            const { error } = await supabase
-                .from('users')
-                .upsert(
-                    [{ line_uid: userId, display_name: displayName, joined_at: new Date().toISOString() }],
-                    { onConflict: 'line_uid' }
-                );
+            // Save to Supabase
+            if (supabase) {
+                const { error } = await supabase
+                    .from('users')
+                    .upsert(
+                        [{ line_uid: userId, display_name: displayName, joined_at: new Date().toISOString() }],
+                        { onConflict: 'line_uid' }
+                    );
 
-            if (error) {
-                console.error('Error saving user to Supabase:', error);
+                if (error) {
+                    console.error('Error saving user to Supabase:', error);
+                } else {
+                    console.log(`✅ User saved: ${displayName} (${userId})`);
+                }
             } else {
-                console.log(`✅ User saved: ${displayName} (${userId})`);
+                console.warn(`⚠️ Supabase not configured. Skipping DB save for ${displayName}.`);
             }
 
             return client.replyMessage({

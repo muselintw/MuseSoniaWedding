@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const line = require('@line/bot-sdk');
 const supabase = require('./supabaseClient');
 const { searchTable } = require('./tableService');
@@ -55,9 +57,33 @@ async function handleEvent(event) {
             });
         }
 
-        // ── Message event: table look-up ─────────────────────────────────────
+        // ── Message event: table look-up or FAQ ──────────────────────────────
         if (event.type === 'message' && event.message.type === 'text') {
             const guestName = event.message.text.trim();
+
+            // Check if user is asking for FAQ
+            if (guestName.toUpperCase() === 'FAQ') {
+                try {
+                    const faqJsonPath = path.join(__dirname, 'flex_messages', 'FAQ_Flex.json');
+                    const faqData = JSON.parse(fs.readFileSync(faqJsonPath, 'utf8'));
+
+                    return client.replyMessage({
+                        replyToken: event.replyToken,
+                        messages: [{
+                            type: 'flex',
+                            altText: '婚宴資訊 FAQ',
+                            contents: faqData
+                        }],
+                    });
+                } catch (err) {
+                    console.error('Error reading/sending FAQ Flex message:', err);
+                    return client.replyMessage({
+                        replyToken: event.replyToken,
+                        messages: [{ type: 'text', text: '抱歉，讀取 FAQ 資訊失敗，請稍後再試。' }],
+                    });
+                }
+            }
+
             const tableInfo = searchTable(guestName);
 
             const replyText = tableInfo

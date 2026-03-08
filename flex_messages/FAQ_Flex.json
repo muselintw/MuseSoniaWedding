@@ -1,0 +1,481 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "婚宴資訊",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/M5pe1yZ.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "2026年3月28日（六）",
+            "wrap": true,
+            "size": "md",
+            "weight": "bold",
+            "align": "center",
+            "color": "#333333"
+          },
+          {
+            "type": "text",
+            "text": "翡麗詩莊園 2F 天翼廳",
+            "size": "sm",
+            "align": "center",
+            "color": "#555555",
+            "margin": "sm"
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#C0CFB2"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "17:30",
+                "size": "sm",
+                "weight": "bold",
+                "color": "#5D7B9F",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "開放入場",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 4
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "18:00",
+                "size": "sm",
+                "weight": "bold",
+                "color": "#5D7B9F",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "正式開席",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 4
+              }
+            ],
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "🎁 現場備有小驚喜，建議大家提早抵達喔！",
+            "wrap": true,
+            "size": "xs",
+            "color": "#95A58D",
+            "margin": "xl"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "📍 Google Map 導航",
+              "uri": "https://maps.app.goo.gl/BC3oCwiqLo16khzq8"
+            },
+            "style": "primary",
+            "color": "#5D7B9F",
+            "height": "sm"
+          }
+        ],
+        "paddingAll": "12px"
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#5D7B9F"
+        },
+        "body": {
+          "backgroundColor": "#F7F8F8"
+        },
+        "footer": {
+          "backgroundColor": "#F7F8F8"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "🚗 開車前往",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/mffJgz6.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "莊園周邊停車位較有限，建議停至：",
+            "wrap": true,
+            "size": "xs",
+            "color": "#555555"
+          },
+          {
+            "type": "text",
+            "text": "中山國中停車場",
+            "size": "md",
+            "weight": "bold",
+            "margin": "lg",
+            "align": "center",
+            "color": "#333333"
+          },
+          {
+            "type": "text",
+            "text": "台北市松山區民權東路三段\n140 巷 15 號",
+            "wrap": true,
+            "size": "xs",
+            "color": "#888888",
+            "margin": "sm",
+            "align": "center"
+          },
+          {
+            "type": "text",
+            "text": "🚶 停妥後步行約 6 分鐘即可抵達",
+            "wrap": true,
+            "size": "xs",
+            "color": "#95A58D",
+            "margin": "lg"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "🅿️ 停車場導航",
+              "uri": "https://maps.app.goo.gl/6798CnvXKfPxAoxFA"
+            },
+            "style": "primary",
+            "color": "#9BAED4",
+            "height": "sm"
+          }
+        ],
+        "paddingAll": "12px"
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#9BAED4"
+        },
+        "body": {
+          "backgroundColor": "#F7F8F8"
+        },
+        "footer": {
+          "backgroundColor": "#F7F8F8"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "🚇 大眾運輸",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/wbHKgPA.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "🚈 捷運",
+            "size": "sm",
+            "weight": "bold",
+            "color": "#333333"
+          },
+          {
+            "type": "text",
+            "text": "「松山機場站」2 號或 3 號出口\n或「中山國中站」",
+            "wrap": true,
+            "size": "xs",
+            "color": "#555555",
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "出站步行約 8–10 分鐘",
+            "size": "xs",
+            "color": "#888888",
+            "margin": "xs"
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#DADEDF"
+          },
+          {
+            "type": "text",
+            "text": "🚌 公車",
+            "size": "sm",
+            "weight": "bold",
+            "margin": "lg",
+            "color": "#333333"
+          },
+          {
+            "type": "text",
+            "text": "搭至「民生敦化站」或「長庚醫院站」，下車後步行即可到達。",
+            "wrap": true,
+            "size": "xs",
+            "color": "#555555",
+            "margin": "sm"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#C0CFB2"
+        },
+        "body": {
+          "backgroundColor": "#F7F8F8"
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "👗 Dress Code",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/OZg9DIW.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "配合三月的春意盎然🌿\n誠摯邀請大家加入「春天色系」的派對！",
+            "wrap": true,
+            "size": "xs",
+            "color": "#555555"
+          },
+          {
+            "type": "text",
+            "text": "歡迎穿著以下色系：",
+            "size": "xs",
+            "color": "#555555",
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": " ",
+                    "size": "xxs"
+                  }
+                ],
+                "backgroundColor": "#DADEDF",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px",
+                "justifyContent": "center",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": " ",
+                    "size": "xxs"
+                  }
+                ],
+                "backgroundColor": "#C0CFB2",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px",
+                "justifyContent": "center",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": " ",
+                    "size": "xxs"
+                  }
+                ],
+                "backgroundColor": "#95A58D",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px",
+                "justifyContent": "center",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": " ",
+                    "size": "xxs"
+                  }
+                ],
+                "backgroundColor": "#9BAED4",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px",
+                "justifyContent": "center",
+                "alignItems": "center"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": " ",
+                    "size": "xxs"
+                  }
+                ],
+                "backgroundColor": "#5D7B9F",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px",
+                "justifyContent": "center",
+                "alignItems": "center"
+              }
+            ],
+            "margin": "lg",
+            "spacing": "sm",
+            "justifyContent": "center"
+          },
+          {
+            "type": "text",
+            "text": "藍色系 ・ 綠色系 ・ 米色系",
+            "size": "xs",
+            "color": "#888888",
+            "margin": "md",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "styles": {
+        "header": {
+          "backgroundColor": "#95A58D"
+        },
+        "body": {
+          "backgroundColor": "#F7F8F8"
+        }
+      }
+    }
+  ]
+}

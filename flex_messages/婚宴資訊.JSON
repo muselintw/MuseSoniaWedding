@@ -1,0 +1,250 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "婚宴資訊",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/M5pe1yZ.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "2026年3月28日（六）",
+            "wrap": true,
+            "size": "md",
+            "weight": "bold",
+            "align": "center",
+            "color": "#333333"
+          },
+          {
+            "type": "text",
+            "text": "翡麗詩莊園 2F 天翼廳",
+            "size": "sm",
+            "align": "center",
+            "color": "#555555",
+            "margin": "sm"
+          },
+          {
+            "type": "separator",
+            "margin": "lg",
+            "color": "#C0CFB2"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "17:30",
+                "size": "sm",
+                "weight": "bold",
+                "color": "#5D7B9F",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "開放入場",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 4
+              }
+            ],
+            "margin": "lg"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "text": "18:00",
+                "size": "sm",
+                "weight": "bold",
+                "color": "#5D7B9F",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "正式開席",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 4
+              }
+            ],
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "🎁 現場備有小驚喜，建議大家提早抵達喔！",
+            "wrap": true,
+            "size": "xs",
+            "color": "#95A58D",
+            "margin": "xl"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "📍 Google Map 導航",
+              "uri": "https://maps.app.goo.gl/BC3oCwiqLo16khzq8"
+            },
+            "style": "primary",
+            "color": "#5D7B9F",
+            "height": "sm"
+          }
+        ],
+        "paddingAll": "12px"
+      },
+      "styles": {
+        "header": { "backgroundColor": "#5D7B9F" },
+        "body": { "backgroundColor": "#F7F8F8" },
+        "footer": { "backgroundColor": "#F7F8F8" }
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "👗 Dress Code",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "size": "lg",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px"
+      },
+      "hero": {
+        "type": "image",
+        "url": "https://i.meee.com.tw/OZg9DIW.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "配合三月的春意盎然🌿\n誠摯邀請大家加入「春天色系」的派對！",
+            "wrap": true,
+            "size": "xs",
+            "color": "#555555"
+          },
+          {
+            "type": "text",
+            "text": "歡迎穿著以下色系：",
+            "size": "xs",
+            "color": "#555555",
+            "margin": "md"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{ "type": "text", "text": " ", "size": "xxs" }],
+                "backgroundColor": "#DADEDF",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{ "type": "text", "text": " ", "size": "xxs" }],
+                "backgroundColor": "#C0CFB2",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{ "type": "text", "text": " ", "size": "xxs" }],
+                "backgroundColor": "#95A58D",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{ "type": "text", "text": " ", "size": "xxs" }],
+                "backgroundColor": "#9BAED4",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{ "type": "text", "text": " ", "size": "xxs" }],
+                "backgroundColor": "#5D7B9F",
+                "cornerRadius": "8px",
+                "width": "36px",
+                "height": "36px"
+              }
+            ],
+            "margin": "lg",
+            "spacing": "sm",
+            "justifyContent": "center"
+          },
+          {
+            "type": "text",
+            "text": "藍色系 ・ 綠色系 ・ 米色系",
+            "size": "xs",
+            "color": "#888888",
+            "margin": "md",
+            "align": "center"
+          }
+        ],
+        "paddingAll": "16px",
+        "spacing": "none"
+      },
+      "styles": {
+        "header": { "backgroundColor": "#95A58D" },
+        "body": { "backgroundColor": "#F7F8F8" }
+      }
+    }
+  ]
+}

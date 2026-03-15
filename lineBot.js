@@ -13,6 +13,12 @@ const client = new line.messagingApi.MessagingApiClient({
     channelAccessToken: config.channelAccessToken,
 });
 
+// ── Flex Message Router Object ───────────────────────────────────────────────
+const KEYWORD_MAP = {
+    'FAQ': '交通資訊.json',
+    '婚宴資訊': '婚宴資訊.JSON'
+};
+
 // LINE webhook signature verification middleware
 const middleware = line.middleware(config);
 
@@ -60,26 +66,28 @@ async function handleEvent(event) {
         // ── Message event: table look-up or FAQ ──────────────────────────────
         if (event.type === 'message' && event.message.type === 'text') {
             const guestName = event.message.text.trim();
+            const upperKeyword = guestName.toUpperCase();
 
-            // Check if user is asking for FAQ
-            if (guestName.toUpperCase() === 'FAQ') {
+            // Check if user is asking for a mapped Flex Message keyword
+            if (KEYWORD_MAP[upperKeyword]) {
+                const targetFilename = KEYWORD_MAP[upperKeyword];
                 try {
-                    const faqJsonPath = path.join(__dirname, 'flex_messages', 'FAQ_Flex.json');
+                    const faqJsonPath = path.join(__dirname, 'flex_messages', targetFilename);
                     const faqData = JSON.parse(fs.readFileSync(faqJsonPath, 'utf8'));
 
                     return client.replyMessage({
                         replyToken: event.replyToken,
                         messages: [{
                             type: 'flex',
-                            altText: '婚宴資訊 FAQ',
+                            altText: `${guestName} 資訊`,
                             contents: faqData
                         }],
                     });
                 } catch (err) {
-                    console.error('Error reading/sending FAQ Flex message:', err);
+                    console.error(`Error reading/sending Flex message for keyword ${guestName}:`, err);
                     return client.replyMessage({
                         replyToken: event.replyToken,
-                        messages: [{ type: 'text', text: '抱歉，讀取 FAQ 資訊失敗，請稍後再試。' }],
+                        messages: [{ type: 'text', text: `抱歉，讀取 ${guestName} 資訊失敗，請稍後再試。` }],
                     });
                 }
             }

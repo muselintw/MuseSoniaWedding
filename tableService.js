@@ -17,37 +17,23 @@ function loadTableData() {
 
         guestTableMap.clear();
 
-        // CSV layout — two blocks sharing the same structure:
-        //
-        //   Block 1 : row 0  (header) + rows 1-12  → 主桌 to Table 7
-        //   Block 2 : row 13 (header) + rows 14-24 → Table 8 to Table 13
-        //
-        //   Header row : even col (0, 2, 4…) = table name
-        //   Data row   : even col = seat#, odd col = guest name
-        //
-        //   Columns 14+ are a separate seat-overview section — skip them.
+        // CSV layout — simple two columns:
+        // Column 0: Table Name (e.g. 主桌, 新娘親友1)
+        // Column 1: Guest Name (e.g. 裴淑娥)
+        
+        // Skip the first header row if it's "座位表"
+        let startIdx = 0;
+        if (records.length > 0 && records[0][0] === '座位表') {
+            startIdx = 1;
+        }
 
-        const MAX_COL = 14; // only process columns 0..13 (7 table pairs)
-        const activeHeaders = {}; // col index → table name
-
-        for (const row of records) {
-            // Detect header row: at least one even column contains "Table" or "主桌"
-            let isHeader = false;
-            for (let col = 0; col < Math.min(row.length, MAX_COL); col += 2) {
-                const cell = (row[col] || '').trim();
-                if (cell && (cell.startsWith('Table') || cell === '主桌')) {
-                    activeHeaders[col] = cell;
-                    isHeader = true;
-                }
-            }
-            if (isHeader) continue;
-
-            // Data row: extract (seat, name) pairs
-            for (let col = 0; col < Math.min(row.length, MAX_COL); col += 2) {
-                const seat = (row[col] || '').trim();
-                const name = (row[col + 1] || '').trim();
-                if (seat && name) {
-                    guestTableMap.set(name, activeHeaders[col] || '未知桌次');
+        for (let i = startIdx; i < records.length; i++) {
+            const row = records[i];
+            if (row.length >= 2) {
+                const table = (row[0] || '').trim();
+                const name = (row[1] || '').trim();
+                if (name && table) {
+                    guestTableMap.set(name, table);
                 }
             }
         }

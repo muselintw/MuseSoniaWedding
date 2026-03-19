@@ -57,13 +57,51 @@ CREATE TABLE users (
 ├── pushService.js      # 推播 API（CSV + JSON 上傳）
 ├── supabaseClient.js   # Supabase 連線
 ├── public/admin.html   # 推播管理介面
-├── 桌次_0316.csv             # 桌次安排資料
+├── 桌次_0319.csv             # 桌次安排資料
 └── .env                # 環境變數（不進版控）
 ```
 
 ## 推播使用方式
 
 1. 打開 `https://musesoniawedding.zeabur.app/admin.html`
-2. 上傳包含 LINE UID 的 CSV 檔（UID 以 `U` 開頭，約 33 字元）
-3. 上傳 Flex Message JSON 檔
-4. 點擊「發送推播」
+2. 提供推播名單（上傳 CSV 或直接貼上 UID + 姓名，格式：`UID, 姓名`）
+3. 提供 Flex Message JSON（上傳檔案或直接貼上）
+4. 在 JSON 中使用 `{{Name}}` 作為個人化變數，系統會自動替換為每位賓客的姓名
+5. 點擊「發送推播」
+
+---
+
+## 🚀 SaaS 架構升級規劃（Future Roadmap）
+
+### Current Architecture
+
+- **Monolithic Express.js server** — webhook, push API, admin UI, static files all in one process
+- **Hardcoded single-tenant** — one LINE channel, one CSV, one set of Flex Messages, one Supabase table
+- **No authentication** — anyone with the admin URL can push messages
+- **Static HTML pages** — no component framework, no build step, inline CSS
+- **File-based config** — Flex templates and seating data are flat files in the repo
+
+### Priority Changes for SaaS
+
+**🔴 Critical (Must-have before any paying customer)**
+1. **Multi-tenancy** — Each customer needs their own LINE channel credentials, guest list, and templates, isolated from each other
+2. **Authentication & Authorization** — Admin panel needs a login wall (Supabase Auth is available)
+3. **Database-first architecture** — Move Flex templates, keyword→response mappings, and seating data into Supabase tables instead of flat files
+
+**🟡 Important (Needed for iteration speed)**
+4. **API-first design** — Separate backend API from frontend; Express as pure REST API, admin UI as standalone React/Next.js app
+5. **Environment-based → DB-based config** — LINE credentials should be per-tenant database records, not `.env` variables
+6. **Structured logging & error tracking** — Replace `console.error` with Pino + Sentry
+
+**🟢 Nice-to-have (For scale)**
+7. **Queue-based message sending** — Replace synchronous push loop with a job queue (Bull/Redis) to prevent HTTP timeouts at scale
+8. **Webhook routing** — Single webhook endpoint routing incoming LINE events to correct tenant via `destination` field
+9. **Template editor UI** — Visual Flex Message editor instead of raw JSON pasting
+
+### Open Questions (To Be Decided)
+
+1. **Target customer?** (A) Couples self-service, (B) Wedding planners/agencies, (C) General event organizers
+2. **Monetization model?** Pay-per-event / monthly subscription / one-time fee
+3. **How technical are users?** Raw JSON vs. no-code drag-and-drop template building
+4. **Deployment preference?** Stay on Zeabur, or move to Vercel/Railway/AWS
+5. **Timeline & budget?** Quick MVP in 2 weeks, or longer-term product vision

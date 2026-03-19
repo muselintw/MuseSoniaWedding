@@ -31,6 +31,7 @@
             text-align: center;
             margin-bottom: 6px;
             background: linear-gradient(135deg, #f8b500, #e85d75);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -110,8 +111,9 @@
 
     <form id="pushForm">
         <div class="form-group">
-            <label>① 推播名單 <span style="font-weight:400;color:#666">（CSV，含 LINE UID）</span></label>
-            <input type="file" id="csvFile" name="csvFile" accept=".csv" required>
+            <label>① 推播名單 <span style="font-weight:400;color:#666">（選擇上傳 CSV 或直接貼上多筆 UID）</span></label>
+            <input type="file" id="csvFile" name="csvFile" accept=".csv" style="margin-bottom: 12px;">
+            <textarea id="uidText" name="uidText" rows="4" placeholder="或在此貼上多筆 LINE UID (可使用換行或空白分隔)..." style="width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ddd; font-size: 14px; font-family: monospace; resize: vertical;"></textarea>
         </div>
         <div class="form-group">
             <label>② Flex Message 模板 <span style="font-weight:400;color:#666">（JSON）</span></label>
@@ -136,7 +138,9 @@
         msg.className = 'status';
 
         const formData = new FormData();
-        formData.append('csvFile', document.getElementById('csvFile').files[0]);
+        const csvFile = document.getElementById('csvFile').files[0];
+        if (csvFile) formData.append('csvFile', csvFile);
+        formData.append('uidText', document.getElementById('uidText').value);
         formData.append('jsonFile', document.getElementById('jsonFile').files[0]);
 
         try {

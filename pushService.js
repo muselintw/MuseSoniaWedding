@@ -15,10 +15,11 @@ router.post('/push', upload.fields([
 ]), async (req, res) => {
     const csvPath = req.files?.['csvFile']?.[0]?.path;
     const jsonPath = req.files?.['jsonFile']?.[0]?.path;
+    const uidText = req.body.uidText || '';
 
     try {
-        if (!csvPath || !jsonPath) {
-            return res.status(400).json({ error: 'Please upload both a CSV file and a JSON file.' });
+        if ((!csvPath && !uidText.trim()) || !jsonPath) {
+            return res.status(400).json({ error: '請提供 推播名單 (CSV 或貼上UID) 以及 Flex JSON 模板。' });
         }
 
         // 1. Parse Flex Message JSON
@@ -35,16 +36,28 @@ router.post('/push', upload.fields([
             ? flexMessage
             : { type: 'flex', altText: '您有一則新通知！', contents: flexMessage };
 
-        // 2. Parse CSV — extract all tokens that look like LINE UIDs (starts with U, length > 25)
-        const csvContent = fs.readFileSync(csvPath, 'utf8');
-        const records = parse(csvContent, { columns: false, skip_empty_lines: true });
-
+        // 2. Parse LINE UIDs
         const uidSet = new Set();
-        for (const row of records) {
-            for (const cell of row) {
-                const val = (cell || '').trim();
-                if (val.startsWith('U') && val.length > 25) {
-                    uidSet.add(val);
+
+        // Extract from raw text input
+        if (uidText) {
+            const matches = uidText.match(/U[a-f0-9]{32}/g);
+            if (matches) {
+                matches.forEach(uid => uidSet.add(uid));
+            }
+        }
+
+        // Extract from CSV
+        if (csvPath) {
+            const csvContent = fs.readFileSync(csvPath, 'utf8');
+            const records = parse(csvContent, { columns: false, skip_empty_lines: true });
+
+            for (const row of records) {
+                for (const cell of row) {
+                    const val = (cell || '').trim();
+                    if (val.startsWith('U') && val.length > 25) {
+                        uidSet.add(val);
+                    }
                 }
             }
         }

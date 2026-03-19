@@ -116,8 +116,9 @@
             <textarea id="uidText" name="uidText" rows="4" placeholder="或在此貼上多筆 LINE UID (可使用換行或空白分隔)..." style="width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ddd; font-size: 14px; font-family: monospace; resize: vertical;"></textarea>
         </div>
         <div class="form-group">
-            <label>② Flex Message 模板 <span style="font-weight:400;color:#666">（JSON）</span></label>
-            <input type="file" id="jsonFile" name="jsonFile" accept=".json" required>
+            <label>② Flex Message 模板 <span style="font-weight:400;color:#666">（上傳 JSON 或直接貼上）</span></label>
+            <input type="file" id="jsonFile" name="jsonFile" accept=".json" style="margin-bottom: 12px;">
+            <textarea id="jsonText" name="jsonText" rows="6" placeholder="或直接貼上 Flex Message JSON..." style="width: 100%; padding: 10px 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #ddd; font-size: 14px; font-family: monospace; resize: vertical;"></textarea>
         </div>
         <button type="submit" id="submitBtn" class="btn-submit">發送推播</button>
     </form>
@@ -141,7 +142,10 @@
         const csvFile = document.getElementById('csvFile').files[0];
         if (csvFile) formData.append('csvFile', csvFile);
         formData.append('uidText', document.getElementById('uidText').value);
-        formData.append('jsonFile', document.getElementById('jsonFile').files[0]);
+
+        const jsonFile = document.getElementById('jsonFile').files[0];
+        if (jsonFile) formData.append('jsonFile', jsonFile);
+        formData.append('jsonText', document.getElementById('jsonText').value);
 
         try {
             const res = await fetch('/api/push', { method: 'POST', body: formData });

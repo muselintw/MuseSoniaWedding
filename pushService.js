@@ -16,19 +16,24 @@ router.post('/push', upload.fields([
     const csvPath = req.files?.['csvFile']?.[0]?.path;
     const jsonPath = req.files?.['jsonFile']?.[0]?.path;
     const uidText = req.body.uidText || '';
+    const jsonText = req.body.jsonText || '';
 
     try {
-        if ((!csvPath && !uidText.trim()) || !jsonPath) {
-            return res.status(400).json({ error: '請提供 推播名單 (CSV 或貼上UID) 以及 Flex JSON 模板。' });
+        if ((!csvPath && !uidText.trim()) || (!jsonPath && !jsonText.trim())) {
+            return res.status(400).json({ error: '請提供 推播名單 和 Flex JSON 模板。' });
         }
 
         // 1. Parse Flex Message JSON
-        const jsonContent = fs.readFileSync(jsonPath, 'utf8');
+        let jsonContent = jsonText.trim();
+        if (!jsonContent && jsonPath) {
+            jsonContent = fs.readFileSync(jsonPath, 'utf8');
+        }
+
         let flexMessage;
         try {
             flexMessage = JSON.parse(jsonContent);
         } catch {
-            return res.status(400).json({ error: 'Invalid JSON format in flex message file.' });
+            return res.status(400).json({ error: 'Invalid JSON format in flex message string or file.' });
         }
 
         // Wrap in a proper flex message envelope if it's just the bubble/carousel

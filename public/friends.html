@@ -162,7 +162,11 @@
         }
     }
 
+    // Initial load
     loadFriends();
+
+    // Auto-refresh every hour (3600000 ms)
+    setInterval(loadFriends, 60 * 60 * 1000);
 </script>
 </body>
 </html>

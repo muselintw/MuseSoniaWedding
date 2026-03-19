@@ -1,0 +1,119 @@
+{
+  "type": "bubble",
+  "hero": {
+    "type": "image",
+    "url": "https://musesoniawedding.zeabur.app/pic1.jpg",
+    "size": "full",
+    "aspectRatio": "20:13",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "http://linecorp.com/"
+    }
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "證婚儀式 💍",
+        "weight": "bold",
+        "size": "xl",
+        "color": "#333333"
+      },
+      {
+        "type": "text",
+        "text": "親愛的 {{Name}}，你是我們生命中非常重要的人，特別邀請你一同參與我們的證婚儀式，見證我們在上帝面前立下誓約。",
+        "size": "sm",
+        "color": "#666666",
+        "wrap": true,
+        "margin": "md"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "margin": "lg",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "地點",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "翡麗詩莊園 5F",
+                "wrap": true,
+                "color": "#333333",
+                "size": "sm",
+                "flex": 5,
+                "weight": "bold",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "https://maps.app.goo.gl/MpobaYZKpcGuAyKJ6"
+                }
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "spacing": "sm",
+            "contents": [
+              {
+                "type": "text",
+                "text": "入場",
+                "color": "#aaaaaa",
+                "size": "sm",
+                "flex": 2
+              },
+              {
+                "type": "text",
+                "text": "15:45 - 16:00",
+                "wrap": true,
+                "color": "#333333",
+                "size": "sm",
+                "flex": 5,
+                "weight": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "margin": "xxl"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "margin": "md",
+        "contents": [
+          {
+            "type": "text",
+            "text": "⚠️ 16:00 後將無法再進場 \n請務必準時入席",
+            "wrap": true,
+            "color": "#EF4444",
+            "size": "md",
+            "weight": "bold",
+            "position": "relative",
+            "decoration": "underline",
+            "style": "normal",
+            "margin": "sm",
+            "align": "center",
+            "gravity": "top"
+          }
+        ]
+      }
+    ]
+  }
+}

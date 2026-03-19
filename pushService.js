@@ -86,10 +86,11 @@ router.post('/push', upload.fields([
 
         // 3. Personalized Push loop (Using pushMessage for individualized payloads)
         let pushCount = 0;
+        let failCount = 0;
         const CHUNK_SIZE = 10; // Batch promises to avoid spiking memory or rate limits
         for (let i = 0; i < pushList.length; i += CHUNK_SIZE) {
             const chunk = pushList.slice(i, i + CHUNK_SIZE);
-            const promises = chunk.map(user => {
+            const results = await Promise.allSettled(chunk.map(user => {
                 // String replacement for {{Name}}
                 let personalizedJson = jsonContent.replace(/\{\{Name\}\}/gi, user.name);
 
@@ -105,15 +106,23 @@ router.post('/push', upload.fields([
                     ? flexObj
                     : { type: 'flex', altText: '您有一則新通知！', contents: flexObj };
 
-                return client.pushMessage(user.uid, [messagePayload]).catch(err => {
-                    console.error(`Failed to push to ${user.name} (${user.uid}):`, err.originalError?.response?.data || err.message);
+                return client.pushMessage({
+                    to: user.uid,
+                    messages: [messagePayload],
                 });
-            });
-            await Promise.all(promises);
-            pushCount += chunk.length;
+            }));
+
+            for (const r of results) {
+                if (r.status === 'fulfilled') {
+                    pushCount++;
+                } else {
+                    failCount++;
+                    console.error('Push failed:', r.reason?.message || r.reason);
+                }
+            }
         }
 
-        res.json({ success: true, message: `Successfully pushed personalized messages to ${pushCount} users.` });
+        res.json({ success: true, message: `推播完成：成功 ${pushCount} 位，失敗 ${failCount} 位。` });
     } catch (err) {
         console.error('Push error:', err);
         res.status(500).json({ error: 'Internal Server Error', details: err.message });

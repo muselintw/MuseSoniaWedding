@@ -23,6 +23,19 @@ router.post('/push', upload.fields([
             return res.status(400).json({ error: '請提供 推播名單 和 Flex JSON 模板。' });
         }
 
+        // 1. Read Flex Message JSON content (from pasted text or uploaded file)
+        let jsonContent = jsonText.trim();
+        if (!jsonContent && jsonPath) {
+            jsonContent = fs.readFileSync(jsonPath, 'utf8');
+        }
+
+        // Validate JSON before proceeding
+        try {
+            JSON.parse(jsonContent);
+        } catch {
+            return res.status(400).json({ error: 'Flex Message JSON 格式錯誤，請檢查後重試。' });
+        }
+
         // 2. Parse LINE UIDs and Names
         const pushList = [];
         const uidSet = new Set(); // to prevent duplicates

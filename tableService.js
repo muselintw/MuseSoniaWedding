@@ -7,7 +7,7 @@ const guestTableMap = new Map();
 
 function loadTableData() {
     try {
-        const csvPath = path.join(__dirname, '桌次_0319.csv');
+        const csvPath = path.join(__dirname, '桌次_0328.csv');
         const fileContent = fs.readFileSync(csvPath, 'utf8');
 
         const records = parse(fileContent, {
@@ -38,7 +38,7 @@ function loadTableData() {
             }
         }
 
-        console.log(`✅ Loaded ${guestTableMap.size} guests from 桌次_0319.csv`);
+        console.log(`✅ Loaded ${guestTableMap.size} guests from 桌次_0328.csv`);
     } catch (err) {
         console.error('❌ Error loading table data:', err);
     }

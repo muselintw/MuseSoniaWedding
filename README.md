@@ -57,7 +57,7 @@ CREATE TABLE users (
 ├── pushService.js      # 推播 API（CSV + JSON 上傳）
 ├── supabaseClient.js   # Supabase 連線
 ├── public/admin.html   # 推播管理介面
-├── 桌次_0319.csv             # 桌次安排資料
+├── 桌次_0328.csv             # 桌次安排資料
 └── .env                # 環境變數（不進版控）
 ```
 

@@ -25,7 +25,7 @@
 - LINE Webhook 文件：https://developers.line.biz/en/docs/messaging-api/receiving-messages/
 
 ### 2.2 桌次查詢（Message Event）
-- 使用者輸入文字 → 比對 `桌次_0319.csv` → 回覆桌次
+- 使用者輸入文字 → 比對 `桌次_0328.csv` → 回覆桌次
 - 先精確比對，再部分比對（≥ 2 字元）
 - 找到 → 回覆「您的桌次安排在【Table X】」
 - 找不到 → 回覆找不到的提示訊息
@@ -75,7 +75,7 @@ CREATE TABLE users (
 
 ## 5. 資料檔案
 
-### 5.1 `桌次_0319.csv` 結構（129 行）
+### 5.1 `桌次_0328.csv` 結構（129 行）
 
 這個 CSV 有**不規則的兩區塊**格式：
 
@@ -204,7 +204,7 @@ dotenv              # 本地開發用
 ├── public/
 │   ├── admin.html      # 推播管理介面
 │   └── friends.html    # 好友名單介面
-├── 桌次_0319.csv             # 桌次安排資料（不規則格式）
+├── 桌次_0328.csv             # 桌次安排資料（不規則格式）
 ├── 證婚 FLEX MESSAGE.txt # Flex Message 範本
 ├── .env                # 環境變數（不進版控）
 ├── .gitignore
